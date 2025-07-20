@@ -1,7 +1,9 @@
--[] Add logs to functions & log to file
+-[x] Add logs to functions & log to file
+    Added _to_log func
 -[x] Do a .gitignore and init this directory
     - Only ignored env/
--[] Better Tkinter
+-[x] Better Tkinter
+    - Better colour and added XpBot logs
 -[x] Retransform in classes, different files, etc...
     - Made three classes, a Moving, a XpBot and a App class.
 -[] Make it easy launchable
