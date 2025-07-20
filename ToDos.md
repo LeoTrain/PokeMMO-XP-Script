@@ -1,9 +1,12 @@
 -[] Add logs to functions & log to file
--[] Do a .gitignore and init this directory
+-[x] Do a .gitignore and init this directory
+    - Only ignored env/
 -[] Better Tkinter
 -[x] Retransform in classes, different files, etc...
+    - Made three classes, a Moving, a XpBot and a App class.
 -[] Make it easy launchable
 -[] Check python3 and python3.11 differences and choose one version
+    | Note: This currently works fine with the env
 -[] Add more user informations
 -[] Focuss only PokeMMO (Inputs only in that window)
 -[] Read big text (for future updates like stop at move count 0, use different moves, etc...)
