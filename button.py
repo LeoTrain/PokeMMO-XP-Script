@@ -1,5 +1,6 @@
 import tkinter as tk
 import subprocess
+import threading
 
 class App:
     def __init__(self):
@@ -9,7 +10,7 @@ class App:
     def _init_tk(self):
         self.root = tk.Tk()
         self.root.title("Toggle")
-        self.root.geometry("350x60")
+        self.root.geometry("650x60")
         self.root.configure(bg="#1c1c1c")
         self.root.resizable(False, False)
         self._construct_tk()
@@ -33,18 +34,32 @@ class App:
         )
         self.status_label.pack(side="left", fill="both", expand=True, padx=8)
 
+    def _read_log_loop(self):
+        while self.process and self.process.stdout:
+            line = self.process.stdout.readline()
+            if not line:
+                break
+            self.status_var.set(line.strip())
+
     def _toggle_script(self, event=None):
         if self.process is None:
-            self.process = subprocess.Popen(["env/bin/python", "moving_script.py"])
+            self.process = subprocess.Popen(
+                ["env/bin/python", "moving_script.py"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True
+            )
+            threading.Thread(target=self._read_log_loop, daemon=True).start()
             self.canvas.itemconfig(self.button_circle, fill="#A7C957", outline="#A7C957")
-            self.status_var.set("Script actif")
+            self.status_var.set("Script running")
         else:
             self.process.terminate()
             self.process = None
             self.canvas.itemconfig(self.button_circle, fill="#E49273", outline="#E49273")
-            self.status_var.set("Script inactif")
+            self.status_var.set("Script stopped")
 
     def run(self):
+        self._read_log_loop()
         self.root.mainloop()
 
 def main():
