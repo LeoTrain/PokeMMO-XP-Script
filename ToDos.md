@@ -1,0 +1,10 @@
+-[] Add logs to functions & log to file
+-[] Do a .gitignore and init this directory
+-[] Better Tkinter
+-[x] Retransform in classes, different files, etc...
+-[] Make it easy launchable
+-[] Check python3 and python3.11 differences and choose one version
+-[] Add more user informations
+-[] Focuss only PokeMMO (Inputs only in that window)
+-[] Read big text (for future updates like stop at move count 0, use different moves, etc...)
+-[] Make README
