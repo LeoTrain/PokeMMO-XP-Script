@@ -19,11 +19,12 @@ def get_pixel(pixel_pos: tuple) -> float | tuple[int,...] | None:
 
 while True:
     time.sleep(1)
-    # x, y = pyautogui.position()
-    color = get_pixel(PIXEL_POS_MON_BAR)
-    print(f"Position: {PIXEL_POS_MON_BAR}")
-    print(f"Couleur RGB: {color}\n")
-    print(is_color_close(color, PIXEL_COLOR_MON_BAR_ORANGE))
+    x, y = pyautogui.position()
+    color = get_pixel((x, y))
+    print(f"Position: ({x}, {y})")
+    print(f"Couleur RGB: {color}")
+    # print(is_color_close(color, PIXEL_COLOR_MON_BAR_ORANGE))
+    print()
 
 
 

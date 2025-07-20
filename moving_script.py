@@ -6,7 +6,7 @@ from AppKit import NSWorkspace
 import subprocess
 
 PIXEL_POS = (731, 180)
-PIXEL_POS_TRIO = (867, 131)
+PIXEL_POS_TRIO = (910, 130)
 PIXEL_POS_MON_BAR = (1260, 465)
 PIXEL_COLOR_MON_BAR_ORANGE = (211, 211, 211, 255)
 PIXEL_COLOR_MON_BAR_RED = (155, 155, 155, 255)
@@ -142,9 +142,8 @@ class XpBot():
 
 def main():
     bot = XpBot()
-    # bot.run()
-    time.sleep(3)
-    print(bot._is_needing_healing())
+    bot.run()
+    # print(bot._is_needing_healing())
 
 if __name__ == "__main__":
     main()
