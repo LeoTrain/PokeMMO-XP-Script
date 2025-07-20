@@ -1,5 +1,5 @@
 -[x] Add logs to functions & log to file
-    Added _to_log func
+    - Added _to_log func
 -[x] Do a .gitignore and init this directory
     - Only ignored env/
 -[x] Better Tkinter
@@ -13,3 +13,5 @@
 -[] Focuss only PokeMMO (Inputs only in that window)
 -[] Read big text (for future updates like stop at move count 0, use different moves, etc...)
 -[] Make README
+-[] Finish go to center script and add to tk
+    -[] Make repell ware off without loosing track of the position

@@ -7,6 +7,9 @@ import subprocess
 
 PIXEL_POS = (731, 180)
 PIXEL_POS_TRIO = (867, 131)
+PIXEL_POS_MON_BAR = (1260, 465)
+PIXEL_COLOR_MON_BAR_ORANGE = (211, 211, 211, 255)
+PIXEL_COLOR_MON_BAR_RED = (155, 155, 155, 255)
 PIXEL_COLOR_LIFE_BAR = (253, 253, 253, 255)
 
 class Moving():
@@ -38,8 +41,9 @@ class XpBot():
         self._mover = Moving()
         self.log = True
         self.current_log = ""
+        self.needs_healing = False
 
-    def _log(self, msg: str, timer: float=None) -> None:
+    def _log(self, msg: str, timer=None) -> None:
         if self.log and not timer:
             self.current_log = msg
             print(msg, flush=True)
@@ -79,7 +83,7 @@ class XpBot():
         self._log(f"Checking if {c1} is close to {c2}...")
         return all(abs(a - b) <= tolerance for a, b in zip(c1[:3], c2[:3]))
 
-    def _get_pixel(self, pixel_pos: tuple):
+    def _get_pixel(self, pixel_pos: tuple) -> float | tuple[int,...] | None:
         self._log(f"Getting pixel on pos ({pixel_pos[0]},{pixel_pos[1]}).")
         screenshot = pyautogui.screenshot(region=(pixel_pos[0], pixel_pos[1], 1, 1))
         return screenshot.getpixel((0, 0))
@@ -93,6 +97,12 @@ class XpBot():
         self._log("Checking if is in a trio battle...")
         color = self._get_pixel(PIXEL_POS_TRIO)
         return self._is_color_close(color, PIXEL_COLOR_LIFE_BAR)
+
+    def _is_needing_healing(self):
+        self._log("Checking if 'mon needs healing...")
+        color = self._get_pixel(PIXEL_POS_MON_BAR)
+        self.needs_healing = True
+        return self._is_color_close(color, PIXEL_COLOR_MON_BAR_ORANGE) and self._is_color_close(color, PIXEL_COLOR_MON_BAR_RED)
 
     def _move(self, duration: float=0.5):
         self._log("Moving up and down...")
@@ -128,10 +138,13 @@ class XpBot():
                 self._battle()
             elif self._is_in_trio_battle():
                 self._skip_battle()
+                
 
 def main():
     bot = XpBot()
-    bot.run()
+    # bot.run()
+    time.sleep(3)
+    print(bot._is_needing_healing())
 
 if __name__ == "__main__":
     main()
