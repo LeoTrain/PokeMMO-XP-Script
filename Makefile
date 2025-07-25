@@ -6,4 +6,5 @@ all:
 	. $(SETUP) && $(PYTHON) $(NAME)
 
 clean:
-	rm -rf env
+	deactivate pokemmo_env
+	rm -rf pokemmo_env
