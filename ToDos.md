@@ -11,6 +11,8 @@
     | Note: This currently works fine with the env
 -[] Add more user informations
 -[] Focuss only PokeMMO (Inputs only in that window)
+    | Note: This is currently not working on macOS.
+    | A solution would be to make it run on a separate computer or to run in a VM and launch the script from outside.
 -[] Read big text (for future updates like stop at move count 0, use different moves, etc...)
 -[] Make README
 -[] Finish go to center script and add to tk
